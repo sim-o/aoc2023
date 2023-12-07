@@ -8,25 +8,25 @@ Ex ←
 Input ← &fras "day3.txt"
 
 # split lines
-⊜(
+ParseLines ← |1 ⊜(
   # drop to colon
   ↘+1⊗@:.
   # partition by pipe
   ⊜(
     # parse each number separated by space
-    □⊜(parse)≠@ .
+    □⊜(⋕)≠@ .
   ) ≠@|.
   # find the intersection of the two parts of the card
-  ▽∊,⊃(⊔⊢⇌)(⊔⊢)
+  ▽∊,⊃(°□⊢⇌)(°□⊢)
   # the cards score is its length
   ⧻
-) ≠@\n. Input
+) ≠@\n.
 
 # calculate the number of copies of the next card, where
 # the argument is [[copies cardscore]]
 Copies ← |1 +1∧(+⊢):0
 
-;∧(
+Solve ← |1 ;∧(
   # put the current cards score into an array
   # this value will look like [[copies cardscore]]
   ¤⊟Copies,
@@ -36,6 +36,9 @@ Copies ← |1 +1∧(+⊢):0
   ⊏⊝⊚≡(⊢⇌).
   # keep a running total on the back of the stack
   ⊙(+):Copies.
-)⊙([]0) # shove an accumulator and running total on the back of the stack
+)⊙(
+  # shove an accumulator and running total on the back of the stack
+  []0
+)
 
-&p $"Solution Day 3 part 2: _"
+&p $"Solution Day 3 part 2: _" Solve ParseLines Input
