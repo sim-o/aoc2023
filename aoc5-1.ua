@@ -33,18 +33,18 @@ $
 $ humidity-to-location map:
 $ 60 56 37
 $ 56 93 4
-Ex ←
+Example ←
 Input ← &fras "day5.txt"
 
-Lines ← ⊜(□)≠@\n. Input
-Seeds ← ⊜(⋕)≠@ . ↘+1⊗@:. °□⊢ Lines
-MapLines ← ⊜(□≡(⊜(⋕)≠@ .°□)) ≡(≠@:⊢⇌).°□ ↘1Lines
-MapMatches ← |2 ↧⊃(≥⊏1)(</+⊏1_2)°□:
+Lines ← |1 ⊜□≠@\n.
+Seeds ← |1 ⊜⋕≠@ . ↘+1⊗@:. °□⊢
+MapLines ← |1 ⊜(□≡(⊜⋕≠@ .°□)) ≡(≠@:⊢⇌).°□ ↘1
+MapMatches ← |2 ↧⊃(≥⊏1)(</+⊏1_2)⊐:
 Mapper ← |2 +/-⊏1_0: ⊙(°□)
-# ReduceMap ← ▽≥1. ♭⊞(×⊙Mapper MapMatches ,,)
-ReduceMap ← ≡(⊡0_0 ⊏⍖≡(⊏1).) ⊞(⊂⊏⊙:.⊙(⊟:) ⊙(Mapper) MapMatches ,, ⊙:.)
+ReduceMap ← ≡(⊡0_0 ⊏⍖≡(⊏1).) ⊠(⊂⊏⊙:.⊙(⊟:) ⊙Mapper MapMatches ,, ⊙:.)
 
-⊢ ⊏ ⍏. ∧(ReduceMap: ≡□°□) MapLines Seeds
+Solve ← |1 ⊢⊏⍏. ∧(ReduceMap:≡□°□) ⊃MapLines Seeds Lines
+Solve Input
 
 ---
 ⍤. =1 MapMatches: [52 50 48] 79
@@ -53,5 +53,5 @@ ReduceMap ← ≡(⊡0_0 ⊏⍖≡(⊏1).) ⊞(⊂⊏⊙:.⊙(⊟:) ⊙(Mapper) 
 ⍤. =0 MapMatches: [50 98 2] 97
 ⍤. =0 MapMatches: [50 98 2] 100
 ⍤. ≍[81 53] Mapper: [52 50 48] [79 51]
-⍤: ≍[81 14 57 13]. ReduceMap [79 14 55 13] ≡□[[50 98 2] [52 50 48]]
+⍤. ≍[81 14 57 13] ReduceMap [79 14 55 13] [[50 98 2] [52 50 48]]
 ---
