@@ -39,11 +39,13 @@ Input ← &fras "day5.txt"
 Lines ← |1 ⊜□≠@\n.
 Seeds ← |1 ⊜⋕≠@ . ↘+1⊗@:. °□⊢
 MapLines ← |1 ⊜(□≡(⊜⋕≠@ .°□)) ≡(≠@:⊢⇌).°□ ↘1
-MapMatches ← |2 ↧⊃(≥⊏1)(</+⊏1_2)⊐:
-Mapper ← |2 +/-⊏1_0: ⊙(°□)
-ReduceMap ← ≡(⊡0_0 ⊏⍖≡(⊏1).) ⊠(⊂⊏⊙:.⊙(⊟:) ⊙Mapper MapMatches ,, ⊙:.)
-
-Solve ← |1 ⊢⊏⍏. ∧(ReduceMap:≡□°□) ⊃MapLines Seeds Lines
+NextValue ← |2 +/-⊏1_0: ⊙(°□)
+MapMatches ← |2 ↧⊃(≥⊏1|</+⊏1_2)
+ReduceMap ← ≡(
+  ≡(MapMatches ⊃(↘1|⊢).)
+  (NextValue ⊃(⊢|↘1)⊏|⊡0_0;): ⊙=.⊗1 :⧻.
+) ⊠(⊂)
+Solve ← |1 ⊢⊏⍏. ∧(ReduceMap:⊐°□) ⊃MapLines Seeds Lines
 Solve Input
 
 ---
